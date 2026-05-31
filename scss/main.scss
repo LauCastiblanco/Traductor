@@ -1,0 +1,11 @@
+// ============================================
+// Main SCSS - Traductor Cultural
+// Punto de entrada para compilación
+// ============================================
+
+@import 'variables';
+@import 'reset';
+@import 'base';
+@import 'layout';
+@import 'components';
+@import 'pages/traductor';

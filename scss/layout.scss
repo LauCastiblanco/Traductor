@@ -1,0 +1,226 @@
+// ============================================
+// Layout - Traductor Cultural
+// ============================================
+
+/* Container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-4;
+
+    @include media-sm {
+        padding: 0 $spacing-6;
+    }
+
+    @include media-lg {
+        padding: 0 $spacing-8;
+    }
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, $color-primary 0%, $color-primary-dark 100%);
+    color: $color-white;
+    padding: $spacing-12 $spacing-4;
+    text-align: center;
+    box-shadow: $shadow-md;
+
+    @include media-sm {
+        padding: $spacing-16 $spacing-6;
+    }
+
+    @include media-lg {
+        padding: $spacing-20 $spacing-8;
+    }
+}
+
+.header__title {
+    font-size: $font-size-4xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-2;
+    color: $color-white;
+
+    @include media-sm {
+        font-size: $font-size-5xl;
+    }
+}
+
+.header__subtitle {
+    font-size: $font-size-lg;
+    color: rgba($color-white, 0.9);
+    margin: 0;
+
+    @include media-sm {
+        font-size: $font-size-xl;
+    }
+}
+
+/* Main Content */
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: $spacing-12 $spacing-4;
+
+    @include media-sm {
+        padding: $spacing-16 $spacing-6;
+    }
+
+    @include media-lg {
+        padding: $spacing-20 $spacing-8;
+    }
+}
+
+/* Footer */
+.footer {
+    background-color: $color-bg-lighter;
+    border-top: 1px solid $color-border;
+    padding: $spacing-8 $spacing-4;
+    text-align: center;
+    color: $color-text-light;
+    margin-top: $spacing-16;
+
+    @include media-sm {
+        padding: $spacing-12 $spacing-6;
+    }
+
+    @include media-lg {
+        padding: $spacing-16 $spacing-8;
+    }
+}
+
+.footer__text {
+    margin: 0;
+    font-size: $font-size-sm;
+}
+
+/* Grid */
+.grid {
+    display: grid;
+    gap: $spacing-4;
+
+    @include media-md {
+        gap: $spacing-6;
+    }
+
+    @include media-lg {
+        gap: $spacing-8;
+    }
+}
+
+.grid--2-col {
+    @include media-md {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.grid--3-col {
+    @include media-md {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include media-lg {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.grid--4-col {
+    @include media-lg {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Flexbox Utilities */
+.flex {
+    display: flex;
+}
+
+.flex--center {
+    @include flex-center;
+}
+
+.flex--between {
+    @include flex-between;
+}
+
+.flex--column {
+    @include flex-column;
+}
+
+.flex--wrap {
+    flex-wrap: wrap;
+}
+
+.flex--gap-2 {
+    gap: $spacing-2;
+}
+
+.flex--gap-4 {
+    gap: $spacing-4;
+}
+
+.flex--gap-6 {
+    gap: $spacing-6;
+}
+
+.flex--gap-8 {
+    gap: $spacing-8;
+}
+
+/* Sections */
+.section {
+    margin-bottom: $spacing-12;
+
+    @include media-lg {
+        margin-bottom: $spacing-20;
+    }
+}
+
+.section__title {
+    font-size: $font-size-3xl;
+    font-weight: $font-weight-bold;
+    margin-bottom: $spacing-6;
+    color: $color-text-dark;
+
+    @include media-lg {
+        font-size: $font-size-4xl;
+    }
+}
+
+.section__subtitle {
+    font-size: $font-size-lg;
+    color: $color-text-light;
+    margin-bottom: $spacing-4;
+}
+
+/* Responsive Utilities */
+.hidden {
+    display: none;
+}
+
+.visible {
+    display: block;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+@include media-md {
+    .hidden-md {
+        display: none;
+    }
+
+    .visible-md {
+        display: block;
+    }
+}
+
+@include media-lg {
+    .hidden-lg {
+        display: none;
+    }
+
+    .visible-lg {
+        display: block;
+    }
+}

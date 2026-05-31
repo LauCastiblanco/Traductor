@@ -1,0 +1,16 @@
+{
+  "name": "traductor-cultural",
+  "version": "1.0.0",
+  "description": "Aplicación web de traducción con adaptación cultural - Proyecto académico Programación Web II",
+  "main": "js/main.js",
+  "scripts": {
+    "sass": "sass scss/main.scss css/main.css",
+    "sass:watch": "sass --watch scss:css"
+  },
+  "keywords": ["traduccion", "cultural", "html5", "css3", "javascript", "vanilla"],
+  "author": "Lau",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.69.5"
+  }
+}
