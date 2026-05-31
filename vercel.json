@@ -1,0 +1,8 @@
+{
+  "buildCommand": "npm run sass",
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "env": {
+    "SKIP_BUILD": "false"
+  }
+}
