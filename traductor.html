@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Traductor Cultural - Aplicación de traducción con adaptación cultural">
+  <title>Traductor Cultural | Traducción con Adaptación Cultural</title>
+  <link rel="stylesheet" href="css/traductor.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <h1 class="header__title">🌐 Traductor Cultural</h1>
+      <p class="header__subtitle">Traduzca manteniendo el contexto cultural del contenido.</p>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="container">
+      <div class="content-wrapper">
+        <!-- Form Section -->
+        <section class="form-section">
+          <div class="card form-card">
+            <h2 class="form-card__title">📝 Texto Original</h2>
+            <form id="translatorForm" class="translator-form">
+              <div class="form-group">
+                <label for="sourceText" class="form-label">Ingresa el texto a traducir:</label>
+                <textarea id="sourceText" class="form-textarea" placeholder="Pega aquí tu texto, párrafo, página o documento completo..." maxlength="5000"></textarea>
+                <span class="char-count" id="charCount">0 caracteres</span>
+                <small style="color:#6b7280;display:block;margin-top:0.25rem;">Máximo 5000 caracteres</small>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group form-group--half">
+                  <label for="sourceLang" class="form-label">Idioma Origen:</label>
+                  <select id="sourceLang" class="form-select" required>
+                    <option value="">Selecciona idioma</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇬🇧 Inglés</option>
+                    <option value="fr">🇫🇷 Francés</option>
+                    <option value="de">🇩🇪 Alemán</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                    <option value="pt">🇵🇹 Portugués</option>
+                    <option value="ja">🇯🇵 Japonés</option>
+                    <option value="zh">🇨🇳 Chino</option>
+                  </select>
+                </div>
+                <div class="form-group form-group--half">
+                  <label for="targetLang" class="form-label">Idioma Destino:</label>
+                  <select id="targetLang" class="form-select" required>
+                    <option value="">Selecciona idioma</option>
+                    <option value="es">🇪🇸 Español</option>
+                    <option value="en">🇬🇧 Inglés</option>
+                    <option value="fr">🇫🇷 Francés</option>
+                    <option value="de">🇩🇪 Alemán</option>
+                    <option value="it">🇮🇹 Italiano</option>
+                    <option value="pt">🇵🇹 Portugués</option>
+                    <option value="ja">🇯🇵 Japonés</option>
+                    <option value="zh">🇨🇳 Chino</option>
+                  </select>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--large" id="submitBtn">✨ Traducir</button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Results Section -->
+        <section class="results-section" id="resultsSection" style="display:none;">
+          <!-- Empty State -->
+          <div id="emptyState" class="empty-state">
+            <p>👈 Ingresa un texto y haz clic en "Traducir"</p>
+          </div>
+
+          <!-- Loading State -->
+          <div id="loadingState" class="loading-state" style="display:none;">
+            <div class="spinner"></div>
+            <p>⏳ Procesando traducción...</p>
+          </div>
+
+          <!-- Success State -->
+          <div id="successState" style="display:none;">
+            <!-- Original Text -->
+            <div class="card result-card">
+              <h3 class="result-card__title">📌 Texto Original</h3>
+              <div class="result-text" id="resultOriginal"></div>
+            </div>
+
+            <!-- Literal Translation -->
+            <div class="card result-card">
+              <h3 class="result-card__title">🔤 Traducción Literal</h3>
+              <div class="result-text" id="resultLiteral"></div>
+            </div>
+
+            <!-- Adapted Translation -->
+            <div class="card result-card">
+              <h3 class="result-card__title">✨ Traducción Adaptada (Recomendada)</h3>
+              <div class="result-text adapted-text" id="resultAdapted"></div>
+            </div>
+
+            <!-- Quality Indicators -->
+            <div class="card result-card">
+              <h3 class="result-card__title">📊 Indicadores de Calidad</h3>
+              <div class="indicators-grid">
+                <div class="indicator-item">
+                  <label>Adaptación Cultural</label>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="adaptationFill" style="width:0%"></div>
+                  </div>
+                  <span class="indicator-value" id="adaptationValue">0%</span>
+                </div>
+                <div class="indicator-item">
+                  <label>Tono</label>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="toneFill" style="width:0%"></div>
+                  </div>
+                  <span class="indicator-value" id="toneValue">0%</span>
+                </div>
+                <div class="indicator-item">
+                  <label>Naturalidad</label>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="naturalnessFill" style="width:0%"></div>
+                  </div>
+                  <span class="indicator-value" id="naturalnessValue">0%</span>
+                </div>
+                <div class="indicator-item">
+                  <label>Expresiones Adaptadas</label>
+                  <div class="expression-badge" id="expressionsBadge">0</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cultural Notes -->
+            <div class="card result-card">
+              <h3 class="result-card__title">📖 Notas Culturales</h3>
+              <div class="result-text" id="resultCulturalNotes"></div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+              <button class="btn btn--secondary" id="copyBtn">📋 Copiar Resultado</button>
+              <button class="btn btn--secondary" id="downloadBtn">📥 Descargar</button>
+              <button class="btn btn--primary" id="newTranslationBtn">🔄 Nueva Traducción</button>
+            </div>
+          </div>
+
+          <!-- Error State -->
+          <div id="errorState" style="display:none;">
+            <div class="error-state">
+              <h3>❌ Error en la traducción</h3>
+              <p id="errorMessage"></p>
+              <button class="btn btn--primary" id="errorRetryBtn">🔄 Intentar de nuevo</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">&copy; 2026 Traductor Cultural | Proyecto Académico Programación Web II | HTML5 • CSS3 • JavaScript Vanilla</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/modules/helpers.js"></script>
+  <script src="js/modules/validators.js"></script>
+  <script src="js/modules/ui.js"></script>
+  <script src="js/modules/indicators.js"></script>
+  <script src="js/modules/api.js"></script>
+  <script src="js/translator.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

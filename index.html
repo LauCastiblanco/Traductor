@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Traductor Cultural - Traducción inteligente con adaptación cultural. Mantén el contexto y significado de tus textos en múltiples idiomas.">
+    <meta name="author" content="Lau - Programación Web II">
+    <meta name="keywords" content="traductor, traducción, cultural, idiomas, adaptación">
+    <title>Traductor Cultural | Traducción Inteligente con Adaptación Cultural</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 2rem;
+            }
+        }
+
+        /* ============================================
+           HEADER / NAVBAR
+           ============================================ */
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar__logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .navbar__nav {
+            display: none;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        @media (min-width: 768px) {
+            .navbar__nav {
+                display: flex;
+            }
+        }
+
+        .navbar__nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 300ms ease;
+        }
+
+        .navbar__nav a:hover {
+            opacity: 0.8;
+        }
+
+        .navbar__cta {
+            background-color: #fbbf24;
+            color: #1f2937;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 300ms ease;
+            white-space: nowrap;
+        }
+
+        .navbar__cta:hover {
+            background-color: #f59e0b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(251, 191, 36, 0.3);
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero {
+                padding: 6rem 1rem;
+            }
+        }
+
+        .hero__content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero__icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        @media (min-width: 768px) {
+            .hero__icon {
+                font-size: 5rem;
+            }
+        }
+
+        .hero__title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .hero__title {
+                font-size: 3.5rem;
+            }
+        }
+
+        .hero__subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        @media (min-width: 768px) {
+            .hero__subtitle {
+                font-size: 1.25rem;
+            }
+        }
+
+        .hero__buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero__buttons {
+                flex-direction: row;
+            }
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 300ms ease;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .btn--primary {
+            background-color: #fbbf24;
+            color: #1f2937;
+        }
+
+        .btn--primary:hover {
+            background-color: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        .btn--secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn--secondary:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        /* ============================================
+           FEATURES SECTION
+           ============================================ */
+
+        .features {
+            padding: 4rem 1rem;
+            background-color: #f9fafb;
+        }
+
+        @media (min-width: 768px) {
+            .features {
+                padding: 6rem 1rem;
+            }
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 300ms ease;
+            text-align: center;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-card__icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card__title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .feature-card__description {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           TECHNOLOGIES SECTION
+           ============================================ */
+
+        .technologies {
+            padding: 4rem 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .technologies {
+                padding: 6rem 1rem;
+            }
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .tech-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+            transition: all 300ms ease;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+
+        .tech-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tech-card__name {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           HOW IT WORKS SECTION
+           ============================================ */
+
+        .how-it-works {
+            padding: 4rem 1rem;
+            background-color: #f9fafb;
+        }
+
+        @media (min-width: 768px) {
+            .how-it-works {
+                padding: 6rem 1rem;
+            }
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .steps {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .step {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .step__number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .step__title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #1f2937;
+        }
+
+        .step__description {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           CTA SECTION
+           ============================================ */
+
+        .cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .cta {
+                padding: 5rem 1rem;
+            }
+        }
+
+        .cta__title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .cta__title {
+                font-size: 2.5rem;
+            }
+        }
+
+        .cta__subtitle {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta__button {
+            background-color: #fbbf24;
+            color: #1f2937;
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-block;
+            transition: all 300ms ease;
+        }
+
+        .cta__button:hover {
+            background-color: #f59e0b;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(251, 191, 36, 0.4);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+
+        footer {
+            background-color: #1f2937;
+            color: #d1d5db;
+            padding: 3rem 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .footer-column h4 {
+            color: white;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-column a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: color 300ms ease;
+        }
+
+        .footer-column a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Loading spinner */
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            color: #6b7280;
+        }
+
+        .loading-spinner {
+            border: 4px solid #e5e7eb;
+            border-top-color: #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="navbar__logo">🌐 Traductor Cultural</a>
+                <ul class="navbar__nav">
+                    <li><a href="#features">Características</a></li>
+                    <li><a href="#technologies">Tecnologías</a></li>
+                    <li><a href="#how">¿Cómo funciona?</a></li>
+                </ul>
+                <a href="traductor.html" class="navbar__cta">Ir al Traductor</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero__content fade-in-up">
+                <div class="hero__icon">🌐</div>
+                <h1 class="hero__title" id="heroTitle">Traductor Cultural Inteligente</h1>
+                <p class="hero__subtitle" id="heroSubtitle">
+                    Traduce textos manteniendo el contexto cultural, significado y naturalidad del idioma original.
+                </p>
+                <div class="hero__buttons">
+                    <a href="traductor.html" class="btn btn--primary">
+                        ✨ Comenzar a Traducir
+                    </a>
+                    <a href="#features" class="btn btn--secondary">
+                        📚 Aprende Más
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2 class="section-title">Características Principales</h2>
+            <p class="section-subtitle">
+                Herramientas poderosas para traducción profesional con adaptación cultural
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">🌍</div>
+                    <h3 class="feature-card__title">Adaptación Cultural</h3>
+                    <p class="feature-card__description">
+                        No solo traduce palabras, adapta el significado y contexto cultural para que el texto sea natural en el idioma destino.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">📊</div>
+                    <h3 class="feature-card__title">Análisis Detallado</h3>
+                    <p class="feature-card__description">
+                        Recibe indicadores de calidad: adaptación cultural, conservación de tono, naturalidad y expresiones reformuladas.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">🔤</div>
+                    <h3 class="feature-card__title">Múltiples Idiomas</h3>
+                    <p class="feature-card__description">
+                        Soporta traducción entre 8 idiomas: Español, Inglés, Francés, Alemán, Portugués, Italiano, Japonés y Chino.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">📝</div>
+                    <h3 class="feature-card__title">Notas Culturales</h3>
+                    <p class="feature-card__description">
+                        Obtén explicaciones sobre las decisiones culturales tomadas en la traducción para mejor comprensión.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">⚡</div>
+                    <h3 class="feature-card__title">Rápido y Confiable</h3>
+                    <p class="feature-card__description">
+                        Procesa traducciones en segundos con resultados consistentes y de alta calidad.
+                    </p>
+                </div>
+
+                <div class="feature-card fade-in-up">
+                    <div class="feature-card__icon">💾</div>
+                    <h3 class="feature-card__title">Descargar Resultados</h3>
+                    <p class="feature-card__description">
+                        Copia o descarga tus traducciones en formato de texto para uso posterior.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technologies Section -->
+    <section class="technologies" id="technologies">
+        <div class="container">
+            <h2 class="section-title">Tecnologías Utilizadas</h2>
+            <p class="section-subtitle">
+                Desarrollado con las mejores prácticas web modernas sin frameworks
+            </p>
+
+            <div class="tech-grid">
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">🏗️</div>
+                    <div class="tech-card__name">HTML5</div>
+                    <p>Estructura semántica moderna</p>
+                </div>
+
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">🎨</div>
+                    <div class="tech-card__name">CSS3</div>
+                    <p>Diseño responsive y animaciones</p>
+                </div>
+
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">⚙️</div>
+                    <div class="tech-card__name">JavaScript</div>
+                    <p>Lógica interactiva vanilla</p>
+                </div>
+
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">📦</div>
+                    <div class="tech-card__name">Sin Frameworks</div>
+                    <p>Código limpio y eficiente</p>
+                </div>
+
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">🔒</div>
+                    <div class="tech-card__name">Prismic CMS</div>
+                    <p>Contenido dinámico</p>
+                </div>
+
+                <div class="tech-card fade-in-up">
+                    <div class="tech-card__icon">🗄️</div>
+                    <div class="tech-card__name">Modular</div>
+                    <p>Arquitectura escalable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <p class="section-subtitle">
+                Proceso simple y directo para obtener traducciones de calidad
+            </p>
+
+            <div class="steps">
+                <div class="step fade-in-up">
+                    <div class="step__number">1</div>
+                    <h3 class="step__title">Ingresa tu Texto</h3>
+                    <p class="step__description">
+                        Escribe o pega el texto que deseas traducir en el campo de entrada. Puede ser cualquier tipo de contenido.
+                    </p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step__number">2</div>
+                    <h3 class="step__title">Selecciona Idiomas</h3>
+                    <p class="step__description">
+                        Elige el idioma de origen y el idioma destino de la lista de idiomas disponibles.
+                    </p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step__number">3</div>
+                    <h3 class="step__title">Traduce</h3>
+                    <p class="step__description">
+                        Haz clic en el botón "Traducir" y espera a que se procese tu solicitud (generalmente en segundos).
+                    </p>
+                </div>
+
+                <div class="step fade-in-up">
+                    <div class="step__number">4</div>
+                    <h3 class="step__title">Analiza y Descarga</h3>
+                    <p class="step__description">
+                        Revisa los resultados, indicadores de calidad y notas culturales. Copia o descarga el resultado.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta__title" id="ctaTitle">¿Listo para Traducir?</h2>
+            <p class="cta__subtitle" id="ctaSubtitle">
+                Comienza ahora con nuestro traductor cultural inteligente
+            </p>
+            <a href="traductor.html" class="cta__button" id="ctaButton">
+                Ir al Traductor Cultural →
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>🌐 Traductor Cultural</h4>
+                    <p>Aplicación web de traducción inteligente con adaptación cultural desarrollada con tecnologías web modernas.</p>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#features">Características</a></li>
+                        <li><a href="#technologies">Tecnologías</a></li>
+                        <li><a href="#how">¿Cómo funciona?</a></li>
+                        <li><a href="traductor.html">Traductor</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>Desarrollador</h4>
+                    <p id="footerText">Proyecto académico para la materia <strong>Programación Web II</strong></p>
+                    <p>Realizado por: <strong>Lau</strong></p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Traductor Cultural. Desarrollado con HTML5, CSS3 y JavaScript Vanilla. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    async function loadPrismicContent() {
+        try {
+            console.log('⏳ Cargando contenido...');
+            const response = await fetch('php/prismic.php');
+            const data = await response.json();
+            
+            if (data.success && data.content) {
+                updatePageContent(data.content);
+                console.log('✅ Contenido cargado correctamente');
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    }
+
+    function updatePageContent(content) {
+        const heroTitle = document.getElementById('heroTitle');
+        if (heroTitle) heroTitle.textContent = content.hero_title;
+
+        const heroSubtitle = document.getElementById('heroSubtitle');
+        if (heroSubtitle) heroSubtitle.textContent = content.subtitle;
+
+        const ctaTitle = document.getElementById('ctaTitle');
+        if (ctaTitle) ctaTitle.textContent = content.hero_title;
+
+        const ctaSubtitle = document.getElementById('ctaSubtitle');
+        if (ctaSubtitle) ctaSubtitle.textContent = content.hero_subtitle;
+
+        const ctaButton = document.getElementById('ctaButton');
+        if (ctaButton) ctaButton.textContent = content.cta_text;
+
+        const footerText = document.getElementById('footerText');
+        if (footerText) footerText.innerHTML = content.footer_text;
+    }
+
+    document.addEventListener('DOMContentLoaded', loadPrismicContent);
+</script>
+
+</body>
+</html>
